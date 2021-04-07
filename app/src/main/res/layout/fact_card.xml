@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@drawable/card_border"
+    >
+
+    <TextView
+        android:id="@+id/tvChuckJoke"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " />
+
+    <TextView
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:id="@+id/tvCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#2196F3"
+        android:layout_marginTop="12dp"
+        tools:text="uncategorized"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvChuckJoke"
+        app:layout_constraintTop_toBottomOf="@+id/tvChuckJoke" />
+
+    <ImageView
+        android:id="@+id/ivShareButton"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_share_black_24dp"
+        app:layout_constraintEnd_toEndOf="@id/tvChuckJoke"
+        app:layout_constraintTop_toTopOf="@id/tvCategory"
+        app:layout_constraintBottom_toBottomOf="@id/tvCategory"
+        app:tint="@color/black"
+        android:contentDescription="@string/share_button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
