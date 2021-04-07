@@ -1,11 +1,15 @@
-package com.example.chucknorrisfacts.view
+package com.example.chucknorrisfacts.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.chucknorrisfacts.R
 import com.example.chucknorrisfacts.databinding.ActivitySearchBinding
+import com.example.chucknorrisfacts.view.adapter.SearchAdapter
 import com.example.chucknorrisfacts.viewmodel.SearchViewModel
 
 class SearchActivity : AppCompatActivity() {
@@ -18,6 +22,25 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
+
+        viewModel.factLiveData.observe(this, {
+            it?.let{
+                binding.tvErrorMsg.isVisible = false
+                binding.rvChuckFacts.apply {
+                    layoutManager = LinearLayoutManager(this@SearchActivity)
+                    adapter = SearchAdapter(it.result)
+                }
+            }
+        })
+
+        viewModel.errorMsgLiveData.observe(this, {
+            it?.let{
+                binding.tvErrorMsg.text = it
+                binding.tvErrorMsg.isVisible
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -34,8 +57,9 @@ class SearchActivity : AppCompatActivity() {
             override fun onQueryTextSubmit(query: String?): Boolean { return true }
 
             override fun onQueryTextChange(query: String?): Boolean {
+                viewModel.setQuery(query ?: "")
 
-                return true
+                    return true
             }
         })
 
