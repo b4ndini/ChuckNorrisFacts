@@ -1,7 +1,8 @@
-package com.example.chucknorrisfacts.model.search
+package com.example.chucknorrisfacts.model.business
 
-import com.example.chucknorrisfacts.api.ResponseApi
+import com.example.chucknorrisfacts.model.Search
 import com.example.chucknorrisfacts.repository.MainRepository
+import io.reactivex.Observable
 
 class SearchBusiness {
 
@@ -9,7 +10,7 @@ class SearchBusiness {
         MainRepository()
     }
 
-    suspend fun getFacts(query: String) : ResponseApi {
+     fun getFacts(query: String) : Observable<Search> {
         return repository.getFacts(query)
     }
 

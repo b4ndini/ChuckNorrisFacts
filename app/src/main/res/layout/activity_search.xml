@@ -16,7 +16,7 @@
         android:id="@+id/tvErrorMsg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center|center"
+        android:layout_gravity="top|center"
         tools:text="erro"
         android:textAllCaps="true"
         android:textSize="28sp"

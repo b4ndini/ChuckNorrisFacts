@@ -1,23 +1,17 @@
 package com.example.chucknorrisfacts.repository
 
 import com.example.chucknorrisfacts.api.ApiService
-import com.example.chucknorrisfacts.api.ResponseApi
-import java.lang.Exception
+import com.example.chucknorrisfacts.model.Search
+import io.reactivex.Observable
 
 class MainRepository {
 
-    suspend fun getFacts(query: String): ResponseApi {
-        return try{
-            val response = ApiService.api.searchFacts(query)
+    fun getFacts(query: String): Observable<Search> {
 
-            if(response.isSuccessful){
-                ResponseApi.Success(response.body())
-            }
-            else{
-                ResponseApi.Error("Erro")
-            }
-        }catch (exception: Exception){
-            ResponseApi.Error("ERRO CARREGAR")
-        }
+        return ApiService.api.searchFacts(query)
+
     }
+
 }
+
+

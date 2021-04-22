@@ -54,7 +54,7 @@ class SearchAdapter(val facts: List<Result>
                 val link = fact.url
                 intent.action = Intent.ACTION_SEND
                 intent.type= "text/plain"
-                intent.putExtra(Intent.EXTRA_TEXT,"Chuck Norris Fact #${fact.id} :\n $link")
+                intent.putExtra(Intent.EXTRA_TEXT,"Chuck Norris Fact:\n $link")
                 context.startActivity(Intent.createChooser(intent, "Compartilhar com"))
             }
 
